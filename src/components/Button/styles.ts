@@ -4,7 +4,7 @@ const buttonStyles = cva(["transition-colors"], {
   variants: {
     variant: {
       primary: ["text-sm", "bg-primary-700", "rounded-md", "bg-primary-100"],
-      ghost: ["hover:bg-primary-300"],
+      ghost: ["hover:bg-primary-100"],
     },
     size: {
       default: ["text-sm", "py-1", "px-2"],
