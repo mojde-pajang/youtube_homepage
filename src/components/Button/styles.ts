@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 const buttonStyles = cva(["transition-colors"], {
   variants: {
     variant: {
-      primary: ["text-sm", "bg-primary-700", "rounded-md", "bg-primary-100"],
+      primary: ["text-sm", "hover:bg-primary-300", "rounded-md", "bg-primary-100"],
       ghost: ["hover:bg-primary-100"],
     },
     size: {
