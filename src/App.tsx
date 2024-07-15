@@ -10,7 +10,7 @@ function App() {
       <PageHeader />
       <div className="grid grid-cols-[auto,1fr] gap-7 flex-grow-1 overflow-auto">
         <div>Sidebar</div>
-        <div className=" overflow-x-hidden">
+        <div className=" overflow-x-hidden pr-7">
           <div className=" sticky top-0 bg-white z-10 pb-3 whitespace-nowrap">
             <CategoryList categoryList={categories}
               activeCategory={activeCategory}
