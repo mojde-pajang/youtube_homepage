@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
-import { memo, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { Button } from '..';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
@@ -13,7 +12,7 @@ type Props = {
 const TRANSLATE_AMOUNT = 200;
 
 function CategoryList({ categoryList, activeCategory, selectCategory }: Props) {
-  const [translate, setTranslate] = useState(300);
+  const [translate, setTranslate] = useState(0);
   const [showLeftArrow, SetShowLeftArrow] = useState(false);
   const [showRightArrow, SetShowRightArrow] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -43,6 +42,25 @@ function CategoryList({ categoryList, activeCategory, selectCategory }: Props) {
       return newTranslate;
     });
   }
+
+  useEffect(() => {
+    if (containerRef.current == null) return;
+    const observe = new ResizeObserver(entries => {
+      const item = entries[0]?.target;
+      if (item === null) return;
+
+      SetShowLeftArrow(translate > 0);
+      SetShowRightArrow(translate + item.clientWidth < item.scrollWidth)
+
+    });
+    // Only observe the second box
+    observe.observe(containerRef.current);
+
+    () => {
+      observe.disconnect()
+    }
+
+  }, [categoryList, translate])
 
   return (
     <div className=' overflow-x-hidden relative' ref={containerRef}>
