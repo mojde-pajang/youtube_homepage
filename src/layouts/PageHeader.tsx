@@ -1,11 +1,14 @@
-import { Bars3Icon, PlusCircleIcon, BellIcon, UserIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"
+import { Bars3Icon, PlusCircleIcon, BellIcon, UserIcon, MagnifyingGlassIcon, ArrowLeftIcon } from "@heroicons/react/24/outline"
 import logo from "../assets/logo.png"
 import { Button } from "../components"
 import { MicrophoneIcon } from "@heroicons/react/24/solid"
+import { useState } from "react"
 function PageHeader() {
+  const [activeSearch, setActiveSearch] = useState(false);
+
   return (
     <div className=" flex justify-between p-4">
-      <div className=" flex gap-2  md:gap-3 flex-shrink-0 ">
+      <div className={` gap-2  md:gap-3 flex-shrink-0 ${activeSearch ? "hidden sm:flex" : "flex"}`}>
         <Button variant={"ghost"} >
           <Bars3Icon className="size-6 stroke-primary-700" />
         </Button>
@@ -14,8 +17,12 @@ function PageHeader() {
         </a>
       </div>
       {/* items-center justify-center gap-3 */}
-      <form className="hidden sm:flex flex-grow justify-center gap-2  md:gap-3 ">
-        <div className=" flex flex-grow max-w-[600px]">
+      <form className={`flex-grow justify-center gap-2  md:gap-3 ${activeSearch ? "flex" : "hidden sm:flex"} `}>
+        {activeSearch && (<Button type="button" variant={"ghost"} onClick={() => setActiveSearch(false)} className=" flex-shrink-0 sm:hidden">
+          <ArrowLeftIcon className=" w-6  stroke-primary-900" />
+        </Button>)}
+        <div className=" flex flex-grow max-w-[600px] ">
+
           <input type="text"
             placeholder="Search"
             className=" outline-none shadow-inner shadow-primary w-full   px-4 text-base border border-primary-400 focus:border-blue-500  rounded-l-full"
@@ -29,11 +36,12 @@ function PageHeader() {
         </Button>
       </form>
 
-      <div className="flex gap-2  md:gap-3 flex-shrink-0 ">
-        <Button variant={"ghost"} className="sm:hidden" >
+      <div className={`flex-shrink-0 md:gap-2 ${activeSearch ? "hidden sm:flex" : "flex"
+        }`}>
+        <Button variant={"ghost"} className={`sm:hidden`} onClick={() => setActiveSearch(true)} >
           <MagnifyingGlassIcon className="size-6 stroke-primary-700" />
         </Button>
-        <Button variant={"ghost"} className="sm:hidden" >
+        <Button variant={"ghost"} className={`sm:hidden`} >
           <MicrophoneIcon className="size-6 stroke-primary-700" />
         </Button>
         <Button variant={"ghost"} >
