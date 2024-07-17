@@ -8,12 +8,13 @@ type Props = {
   Icon: ElementType;
   title: string;
   url: string;
+  isActive?: boolean
 }
 
-function LargeSectionItem({ Icon, title, url }: Props) {
+function LargeSectionItem({ Icon, title, url, isActive = false }: Props) {
   return (
-    <a href={url} className={twMerge(buttonStyles({ variant: "ghost" }), " rounded-lg h-max w-auto gap-2 px-3 py-3 ml-1")}>
-      <Icon className=" w-5 h-5" />
+    <a href={url} className={twMerge(buttonStyles({ variant: "ghost" }), ` flex-row w-full gap-3 rounded-lg px-3 justify-start ${isActive ? " font-bold bg-primary-100   " : undefined}} `)}>
+      <Icon className={` w-5 h-5 ${isActive ? " fill-black " : undefined}`} />
       <span className="text-sm ">{title}</span>
     </a>
   )
