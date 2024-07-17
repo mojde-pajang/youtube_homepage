@@ -1,8 +1,8 @@
 import { Bars3Icon, PlusCircleIcon, BellIcon, UserIcon, MagnifyingGlassIcon, ArrowLeftIcon } from "@heroicons/react/24/outline"
-import logo from "../assets/logo.png"
 import { Button } from "../../components"
 import { MicrophoneIcon } from "@heroicons/react/24/solid"
 import { useState } from "react"
+import { Logo } from "../../assets";
 function PageHeader() {
   const [activeSearch, setActiveSearch] = useState(false);
 
@@ -13,7 +13,7 @@ function PageHeader() {
           <Bars3Icon className="size-6 stroke-primary-700" />
         </Button>
         <a href="/">
-          <img className=" h-10" src={logo} alt="Logo" />
+          <img className=" h-10" src={Logo} alt="Logo" />
         </a>
       </div>
       {/* items-center justify-center gap-3 */}
