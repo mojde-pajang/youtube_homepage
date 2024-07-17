@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { CategoryList, VideoItem } from "./components"
-import PageHeader from "./layouts/PageHeader"
+import { PageHeader } from "./layouts"
 import { categories, videos } from "./lib/data"
 
 function App() {

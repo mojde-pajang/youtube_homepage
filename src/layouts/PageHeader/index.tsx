@@ -1,6 +1,6 @@
 import { Bars3Icon, PlusCircleIcon, BellIcon, UserIcon, MagnifyingGlassIcon, ArrowLeftIcon } from "@heroicons/react/24/outline"
 import logo from "../assets/logo.png"
-import { Button } from "../components"
+import { Button } from "../../components"
 import { MicrophoneIcon } from "@heroicons/react/24/solid"
 import { useState } from "react"
 function PageHeader() {
