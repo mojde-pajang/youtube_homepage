@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { CategoryList, VideoItem } from "./components"
-import { PageHeader } from "./layouts"
+import { PageHeader, Sidebar } from "./layouts"
 import { categories, videos } from "./lib/data"
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className='max-h-screen flex flex-col'>
       <PageHeader />
       <div className="grid grid-cols-[auto,1fr] gap-7 flex-grow-1 overflow-auto">
-        <div>Sidebar</div>
+        <Sidebar />
         <div className=" overflow-x-hidden pr-7">
           <div className="sticky top-0 bg-white z-10 pb-4">
             <CategoryList categoryList={categories}
