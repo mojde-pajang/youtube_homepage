@@ -22,17 +22,26 @@ import SmallSidebarItem from "./components/SmallSidebarItem"
 import LargeSection from "./components/LargeSection"
 import LargeSectionItem from './components/LargeSectionItem';
 import { playlists, subscriptions } from "../../lib/data";
+import { useSidebarContext } from "../../contexts/SidebarContext";
+import HeaderFirstSection from "../PageHeader/components/HeaderFirstSection";
 
 function Sidebar() {
+  const { isLargeOpen, isSmallOpen } = useSidebarContext()
   return (
     <>
-      <aside className={`sticky top-0 overflow-y-auto scrollbar-hidden pb-4 flex flex-col ml-1 lg:hidden`}>
+      <aside className={`sticky top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col ml-1 
+      ${isLargeOpen ? " lg:hidden" : " lg:flex"}`}>
         <SmallSidebarItem Icon={HomeIcon} url="/" title="Home" />
         <SmallSidebarItem Icon={BoltIcon} url="/" title="Shorts" />
         <SmallSidebarItem Icon={ServerStackIcon} url="/" title="Subscription" />
         <SmallSidebarItem Icon={VideoCameraIcon} url="/" title="You" />
       </aside>
-      <aside className={`sticky w-48 top-0 overflow-y-auto scrollbar-hidden px-2 pb-4 lg:flex flex-col ml-1 hidden`}>
+      <aside className={`lg:sticky w-48 absolute top-0 overflow-y-auto scrollbar-hidden px-2 pb-4   flex-col ml-1 
+      ${isLargeOpen ? " lg:flex" : " lg:hidden"} ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}>
+        <div className="lg:hidden sticky top-0 bg-white px-1 pt-4">
+          <HeaderFirstSection />
+        </div>
+
         <LargeSection >
           <LargeSectionItem IconOrImgURL={HomeIcon} url="/" title="Home" isActive />
           <LargeSectionItem IconOrImgURL={BoltIcon} url="/" title="Shorts" />
