@@ -5,16 +5,21 @@ import buttonStyles from "../../../components/Button/styles";
 
 
 type Props = {
-  Icon: ElementType;
+  IconOrImgURL: ElementType | string;
   title: string;
   url: string;
   isActive?: boolean
 }
 
-function LargeSectionItem({ Icon, title, url, isActive = false }: Props) {
+function LargeSectionItem({ IconOrImgURL, title, url, isActive = false }: Props) {
   return (
     <a href={url} className={twMerge(buttonStyles({ variant: "ghost" }), ` flex-row w-full gap-3 rounded-lg px-3 justify-start ${isActive ? " font-bold bg-primary-100   " : undefined}} `)}>
-      <Icon className={` w-5 h-5 ${isActive ? " fill-black " : undefined}`} />
+      {(typeof IconOrImgURL === "string") ? (
+        <img src={IconOrImgURL} alt="" className="w-6 h-6 rounded-full" />
+
+      ) : (
+        <IconOrImgURL className={` w-5 h-5 ${isActive ? " fill-black " : undefined}`} />
+      )}
       <span className="text-sm ">{title}</span>
     </a>
   )
