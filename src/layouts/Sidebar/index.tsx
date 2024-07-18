@@ -26,7 +26,7 @@ import { useSidebarContext } from "../../contexts/SidebarContext";
 import HeaderFirstSection from "../PageHeader/components/HeaderFirstSection";
 
 function Sidebar() {
-  const { isLargeOpen, isSmallOpen } = useSidebarContext()
+  const { isLargeOpen, isSmallOpen, close } = useSidebarContext()
   return (
     <>
       <aside className={`sticky top-0 overflow-y-auto scrollbar-hidden pb-4 flex-col ml-1 
@@ -36,6 +36,12 @@ function Sidebar() {
         <SmallSidebarItem Icon={ServerStackIcon} url="/" title="Subscription" />
         <SmallSidebarItem Icon={VideoCameraIcon} url="/" title="You" />
       </aside>
+
+      {
+        isSmallOpen && <div onClick={close}
+          className="lg:hidden fixed inset-0 z-[999] bg-primary-700 opacity-50 "
+        />
+      }
       <aside className={`lg:sticky w-48 absolute top-0 overflow-y-auto scrollbar-hidden px-2 pb-4   flex-col ml-1 
       ${isLargeOpen ? " lg:flex" : " lg:hidden"} ${isSmallOpen ? "flex z-[999] bg-white max-h-screen" : "hidden"}`}>
         <div className="lg:hidden sticky top-0 bg-white px-1 pt-4">

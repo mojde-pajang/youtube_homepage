@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 type SidebarContextType = {
   isLargeOpen: boolean;
@@ -45,8 +45,21 @@ function SidebarProvider({ children }: SidebarProviderProps) {
     } else {
       setIsLargeOpen(false)
     }
-
   }
+
+  useEffect(() => {
+    const handler = () => {
+      if (!isScreenSmall()) setIsSmallOpen(false)
+    }
+
+    window.addEventListener("resize", handler)
+
+    return () => {
+      window.removeEventListener("resize", handler)
+    }
+  }, [])
+
+
   return (
     <SidebarContext.Provider value={{
       isLargeOpen,
